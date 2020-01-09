@@ -1,0 +1,8 @@
+D:\C#\SocketChat\Com\bin\Debug\netcoreapp3.0\Com.deps.json
+D:\C#\SocketChat\Com\bin\Debug\netcoreapp3.0\Com.dll
+D:\C#\SocketChat\Com\bin\Debug\netcoreapp3.0\Com.pdb
+D:\C#\SocketChat\Com\obj\Debug\netcoreapp3.0\Com.csprojAssemblyReference.cache
+D:\C#\SocketChat\Com\obj\Debug\netcoreapp3.0\Com.AssemblyInfoInputs.cache
+D:\C#\SocketChat\Com\obj\Debug\netcoreapp3.0\Com.AssemblyInfo.cs
+D:\C#\SocketChat\Com\obj\Debug\netcoreapp3.0\Com.dll
+D:\C#\SocketChat\Com\obj\Debug\netcoreapp3.0\Com.pdb

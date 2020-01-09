@@ -1,0 +1,11 @@
+D:\C#\SocketChat\test\bin\Debug\netcoreapp3.0\test.exe
+D:\C#\SocketChat\test\bin\Debug\netcoreapp3.0\test.deps.json
+D:\C#\SocketChat\test\bin\Debug\netcoreapp3.0\test.runtimeconfig.json
+D:\C#\SocketChat\test\bin\Debug\netcoreapp3.0\test.runtimeconfig.dev.json
+D:\C#\SocketChat\test\bin\Debug\netcoreapp3.0\test.dll
+D:\C#\SocketChat\test\bin\Debug\netcoreapp3.0\test.pdb
+D:\C#\SocketChat\test\obj\Debug\netcoreapp3.0\test.csprojAssemblyReference.cache
+D:\C#\SocketChat\test\obj\Debug\netcoreapp3.0\test.AssemblyInfoInputs.cache
+D:\C#\SocketChat\test\obj\Debug\netcoreapp3.0\test.AssemblyInfo.cs
+D:\C#\SocketChat\test\obj\Debug\netcoreapp3.0\test.dll
+D:\C#\SocketChat\test\obj\Debug\netcoreapp3.0\test.pdb

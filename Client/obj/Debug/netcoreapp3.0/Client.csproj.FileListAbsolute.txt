@@ -1,0 +1,14 @@
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Client.exe
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Client.deps.json
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Client.runtimeconfig.json
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Client.runtimeconfig.dev.json
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Client.dll
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Client.pdb
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Com.dll
+D:\C#\SocketChat\Client\bin\Debug\netcoreapp3.0\Com.pdb
+D:\C#\SocketChat\Client\obj\Debug\netcoreapp3.0\Client.csprojAssemblyReference.cache
+D:\C#\SocketChat\Client\obj\Debug\netcoreapp3.0\Client.AssemblyInfoInputs.cache
+D:\C#\SocketChat\Client\obj\Debug\netcoreapp3.0\Client.AssemblyInfo.cs
+D:\C#\SocketChat\Client\obj\Debug\netcoreapp3.0\Client.csproj.CopyComplete
+D:\C#\SocketChat\Client\obj\Debug\netcoreapp3.0\Client.dll
+D:\C#\SocketChat\Client\obj\Debug\netcoreapp3.0\Client.pdb
