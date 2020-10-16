@@ -37,6 +37,8 @@ namespace NetSocketClient
         private static String response = String.Empty;  
 
         private static Socket client;
+
+        private static bool end = true;
     
         public static void StartClient() {  
             // Connect to a remote device.  
@@ -60,9 +62,9 @@ namespace NetSocketClient
                 // Send test data to the remote device.
                 StateObject state = new StateObject();
                 //SET UP THREAD for receive
-                new Thread(new ThreadStart(() => {
+                Thread receiveLoop = new Thread(new ThreadStart(() => {
                     try{
-                        while(true)
+                        while(end)
                         {
                             Receive(client);
                             receiveDone.WaitOne();
@@ -72,7 +74,8 @@ namespace NetSocketClient
                     {
                         Console.WriteLine(e.ToString());
                     }
-                })).Start();
+                }));
+                receiveLoop.Start();
 
 
 
@@ -90,39 +93,48 @@ namespace NetSocketClient
                 // Send(client, Packet.Encode(PacketType.ClientAccountRegister, (ICanSerialize)register));
                 // sendDone.WaitOne();
 
-                // ClientAccountLogin login = new ClientAccountLogin();
-                // login.login = "user";
-                // login.password = "password";
-                // Send(client, Packet.Encode(PacketType.ClientAccountLogin, (ICanSerialize)login));
-                // Console.WriteLine("Sent login.");
+                // Console.WriteLine("Continue ...");
+                // Console.ReadLine();
 
-                // ClientRequestChannelAccess request = new ClientRequestChannelAccess();
-                // request.id = 0;
-                // request.SenderID = Session.currentUser.id;
-                // Send(client, Packet.Encode(PacketType.ClientRequestChannelAccess, (ICanSerialize)request));
-                // sendDone.WaitOne();
-                // Console.WriteLine("Sent request.");
+                ClientAccountLogin login = new ClientAccountLogin();
+                login.login = "user";
+                login.password = "password";
+                Send(client, Packet.Encode(PacketType.ClientAccountLogin, (ICanSerialize)login));
+                sendDone.WaitOne();
+                Console.WriteLine("Sent login.");
 
-                // Receive(client);
-                // receiveDone.WaitOne();
+                Console.WriteLine("Continue ...");
+                Console.ReadLine();
 
-                // PacketSendMessage p = new PacketSendMessage();
-                // p.ChannelID = 1;
-                // p.message = "test";
-                // p.userID = 1;
+                ClientRequestChannelList requestList = new ClientRequestChannelList();
+                Send(client, Packet.Encode(PacketType.ClientRequestChannelList, (ICanSerialize)requestList));
+                sendDone.WaitOne();
+                Console.WriteLine("Sent list request.");
+                Console.ReadLine();
+
+
+                ClientRequestChannelAccess request = new ClientRequestChannelAccess();
+                request.id = 1;
+                request.SenderID = Session.currentUser.id;
+                Send(client, Packet.Encode(PacketType.ClientRequestChannelAccess, (ICanSerialize)request));
+                sendDone.WaitOne();
+                Console.WriteLine("Sent request.");
+
+                // Console.WriteLine("ANY KEY TO TERMINATE ...");
+                // Console.ReadLine();
+
+                PacketSendMessage p = new PacketSendMessage();
+                p.ChannelID = 1;
+                p.message = "test";
+                p.userID = 1;
                 
                 // Send(client, Packet.Encode(PacketType.ClientSendMessage, (ICanSerialize)p));
                 // sendDone.WaitOne();
 
-
-
-
-                // Receive(client);
-                // receiveDone.WaitOne();
-
                 // Release the socket. 
                 Console.WriteLine("ANY KEY TO TERMINATE ...");
                 Console.ReadLine(); 
+                end = false;
                 client.Shutdown(SocketShutdown.Both);  
                 client.Close();  
     

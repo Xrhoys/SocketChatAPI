@@ -49,7 +49,6 @@ namespace Core
                     break;
                 default: packet = new GenericPacket(); break;
             }
-            Console.WriteLine(type.ID());
             if(packet != null && type != 0)
             {
                 return Packet.Encode(type, (ICanSerialize)packet);
@@ -104,13 +103,13 @@ namespace Core
             ServerAcknowledgementLogin packet = (ServerAcknowledgementLogin)p;
             if (packet.verification)
             {   
-                Console.WriteLine("Logged in");
                 //Login logic (create static user) + notification
                 User user = new User();
                 user.id = packet.id;
                 user.username = packet.login;
                 Session.currentUser = user;
                 Session.isLoggedIn = true;
+                Console.WriteLine("Connected as {0}.", packet.login);
             }
             return null;
         }
@@ -144,6 +143,7 @@ namespace Core
             if (packet.success)
             {
                 //Channel access granted, notify the user
+                Console.WriteLine("Acces granted to channel {0}", packet.id);
             }
             return null;
         }
@@ -154,6 +154,7 @@ namespace Core
             foreach(int ch in packet.list)
             {
                 Channel channel = Channel.Attribute(ch, null, null);
+                Console.WriteLine(channel.id);
             }
             return null;
         }

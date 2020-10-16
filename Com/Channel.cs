@@ -106,6 +106,7 @@ namespace Communication
                     return ch;
                 }
             }
+            Console.WriteLine("Channel not found.");
             return null;
         }
 

@@ -12,11 +12,13 @@ namespace Communication.Packets
         protected override void Deserialize(byte[] data)
         {
             Debug.Assert(ID == 0x1012);
-
-            if(data.Length > 0 && data.Length%4 == 0) {
-                for(int i=0; i<data.Length/4; i++)
+            list = new List<int>();
+            if(data.Length > 0) {
+                int numberOfChannel = BitConverter.ToInt32(data, 0);
+                for(int i=0; i<numberOfChannel; i++)
                 {
-                    list.Add(BitConverter.ToInt32(data, 4*i));
+                    int ch = BitConverter.ToInt32(data, 4*(i+1));
+                    list.Add(ch);
                 }
             }
             else Debug.Fail("Unexpected packet length.");
@@ -24,13 +26,17 @@ namespace Communication.Packets
 
         public byte[] Serialize()
         {
+            list = new List<int>();
             int len = 0;
+            int numberOfChannels = 0;
             foreach(Channel ch in Channel._channel_list)
             {
                 len += BitConverter.GetBytes(ch.id).Length;
+                numberOfChannels++;
             }
-            using(var ms = new MemoryStream(len))
+            using(var ms = new MemoryStream(len + 4))
             using(var bw = new BinaryWriter(ms)) {
+                bw.Write(numberOfChannels);
                 foreach(Channel ch in Channel._channel_list)
                 {
                     bw.Write(ch.id);
@@ -38,6 +44,18 @@ namespace Communication.Packets
 
                 return ms.ToArray();
             }
+        }
+
+        public override string ToString()
+        {
+            String chain = String.Empty;
+
+            foreach(int id in list)
+            {
+                chain += id;
+            }
+
+            return chain;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Communication.Packets
 
         public byte[] Serialize()
         {
-            return null;
+            return new byte[0];
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Communication.Packets
         {
             Debug.Assert(ID == 0x0009);
 
-            if(data.Length == 4)
+            if(data.Length > 0)
             {
                 id = BitConverter.ToInt32(data, 0);
                 SenderID = BitConverter.ToInt32(data, 4);
@@ -29,6 +29,11 @@ namespace Communication.Packets
 
                 return ms.ToArray();
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{id}/{SenderID}";
         }
     }
 }

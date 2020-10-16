@@ -2,6 +2,7 @@ using System;
 using Communication;
 using Communication.Packets;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Core
 {
@@ -68,7 +69,6 @@ namespace Core
             }
 
             //Format the answer
-            Console.WriteLine(type.ID());
             if(packet != null && type != 0)
             {
                 return Packet.Encode(type, (ICanSerialize)packet);
@@ -160,8 +160,16 @@ namespace Core
         {
             try
             {
+                Console.WriteLine("Received channel list request.");
                 ClientRequestChannelList packet = (ClientRequestChannelList)p;
                 ServerAcknowledgementRequestChannelList response = new ServerAcknowledgementRequestChannelList();
+                List<int> list = new List<int>();
+                foreach(Channel ch in Channel._channel_list)
+                {
+                    list.Add(ch.id);
+                }
+                response.list = list;
+                Console.WriteLine(response.ToString());
                 return response;
             }
             catch (Exception e)
@@ -259,8 +267,9 @@ namespace Core
             try
             {
                 ClientRequestChannelAccess packet = new ClientRequestChannelAccess();
+                Console.WriteLine(packet.id);
                 Channel channel = Channel.GetChannelById(packet.id);
-                channel.AddUser(packet.SenderID);
+                channel?.AddUser(packet.SenderID);
 
                 ServerAcknowledgementRequestChannelAccess response = new ServerAcknowledgementRequestChannelAccess();
                 response.success = true;

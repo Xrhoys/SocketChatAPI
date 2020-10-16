@@ -18,7 +18,8 @@ namespace Communication.Packets
             {
                 verification = BitConverter.ToBoolean(data, 0);
                 id = BitConverter.ToInt32(data, 1);
-                login = Encoding.ASCII.GetString(data, 5, data.Length-5);
+                int loginLen = BitConverter.ToInt32(data, 5);
+                login = Encoding.ASCII.GetString(data, 9, loginLen);
             }
             else Debug.Fail("Unexpected packet length.");
         }
@@ -26,11 +27,12 @@ namespace Communication.Packets
         public byte[] Serialize()
         {
             byte[] loginBytes = Encoding.ASCII.GetBytes(login);
-            using(var ms = new MemoryStream(1 + loginBytes.Length + 4))
+            using(var ms = new MemoryStream(9 + loginBytes.Length))
             using(var bw = new BinaryWriter(ms)) {
                 bw.Write(verification);
                 bw.Write(id);
-                bw.Write(login);
+                bw.Write(loginBytes.Length);
+                bw.Write(loginBytes);
 
                 return ms.ToArray();
             }
